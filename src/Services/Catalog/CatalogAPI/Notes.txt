@@ -1,0 +1,15 @@
+ASP.net core Error Handling
+https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-8.0#iexceptionhandler
+
+
+ASP.net Healthchecks library
+https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks
+
+Marten Docs
+https://martendb.io/documents/initial-data
+
+EShop Microservices GitHub
+https://github.com/mehmetozkaya/EShopMicroservices-Udemy-Sections/blob/main/
+
+Distribution Cache
+https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache?view=net-9.0-pp
