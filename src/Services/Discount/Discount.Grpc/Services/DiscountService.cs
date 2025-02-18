@@ -15,8 +15,8 @@ public class DiscountService
     {
         var coupon = dbContext
            .Coupons
-           .FirstOrDefaultAsync(x => x.ProductName == request.ProductName).Result;
-
+           .FirstOrDefaultAsync(x => x.ProductName == request.ProductName, cancellationToken: context.CancellationToken).Result;
+        
         if (coupon is null)
             coupon = new Coupon { ProductName = "No Discount", Amount = 0, Description = "No Discount Desc" };
 
@@ -34,8 +34,8 @@ public class DiscountService
         
         if (coupon is null)
             throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid request object"));
-        dbContext.Coupons.AddAsync(coupon);
-        dbContext.SaveChangesAsync();
+        dbContext.Coupons.AddAsync(coupon, cancellationToken: context.CancellationToken);
+        dbContext.SaveChangesAsync(cancellationToken: context.CancellationToken);
         logger.LogInformation("Discount is successfully created. ProductName : {ProductName}", coupon.ProductName);
 
         var couponModel = coupon.Adapt<CouponModel>();
@@ -49,7 +49,7 @@ public class DiscountService
         if (coupon is null)
             throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid request object"));
         dbContext.Coupons.Update(coupon);
-        dbContext.SaveChangesAsync();
+        dbContext.SaveChangesAsync(cancellationToken: context.CancellationToken);
         logger.LogInformation("Discount is successfully updated. ProductName : {ProductName}", coupon.ProductName);
 
         var couponModel = coupon.Adapt<CouponModel>();
@@ -65,7 +65,7 @@ public class DiscountService
             throw new RpcException(new Status(StatusCode.NotFound, $"Discount with ProductName={request.ProductName} is not found."));
 
         dbContext.Coupons.Remove(coupon);
-        dbContext.SaveChangesAsync();
+        dbContext.SaveChangesAsync(cancellationToken: context.CancellationToken);
 
         logger.LogInformation("Discount is successfully deleted. ProductName : {ProductName}", request.ProductName);
 
@@ -73,7 +73,7 @@ public class DiscountService
     }
     public override Task<CouponModelList> GetAllDiscounts(Empty request, ServerCallContext context)
     {
-        var coupons = dbContext.Coupons.ToListAsync().Result;
+        var coupons = dbContext.Coupons.ToListAsync(cancellationToken: context.CancellationToken).Result;
         var response = new CouponModelList
         {
             Coupons = { coupons.Adapt<List<CouponModel>>() }  // 🔥 Map list automatically
