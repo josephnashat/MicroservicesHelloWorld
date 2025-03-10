@@ -1,7 +1,6 @@
-﻿
-namespace Ordering.Domain.Abastractions;
+﻿namespace Ordering.Domain.Abastractions;
 
-public abstract class Aggregate<T> : Entity<T>, IAggregate<T>
+public abstract class Aggregate<T> : Entity<T>, IAggregate//, IAggregate<T>
 {
     private readonly List<IDomainEvent> _domainEvents = new();
     public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();

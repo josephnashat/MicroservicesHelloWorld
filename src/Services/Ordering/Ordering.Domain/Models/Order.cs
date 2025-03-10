@@ -9,7 +9,7 @@ public class Order : Aggregate<OrderId>
     public Address ShippingAddress { get; private set; } = default!;
     public Address BillingAddress { get; private set; } = default!;
     public Payment Payment { get; private set; } = default!;
-    public OrderStatus Status { get; private set; } = OrderStatus.Pending;
+    public OrderStatus? Status { get; private set; } = null;
     public decimal TotalPrice
     {
         private set { }
@@ -18,6 +18,7 @@ public class Order : Aggregate<OrderId>
 
     public static Order Create(OrderId id, CustomerId customerId, OrderName orderName, Address shippingAddress, Address billingAddress, Payment payment)
     {
+        
         var order = new Order
         {
             Id = id,

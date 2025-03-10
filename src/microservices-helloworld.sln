@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{7D8608F0-1D0D-4BDD-8D19-23EE90D6CB23}"
+	ProjectSection(SolutionItems) = preProject
+		Github-Repo.txt = Github-Repo.txt
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{486A3A5A-B66D-4BBB-8235-7F6F3DA11E45}"
 EndProject

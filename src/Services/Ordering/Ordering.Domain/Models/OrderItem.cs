@@ -9,7 +9,7 @@ public class OrderItem : Entity<OrderItemId>
         Quantity = quantity;
         Price = price;
     }
-
+    public Order Order { get; private set; } = default!;
     public OrderId OrderId { get; private set; } = default!;
     public ProductId ProductId { get; private set; } = default!;
     public int Quantity { get; private set; } = default!;
